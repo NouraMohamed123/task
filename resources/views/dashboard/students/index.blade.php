@@ -29,24 +29,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Confirmation</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this item?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirm">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 
 @push('js')
@@ -73,59 +56,8 @@
           ]
       });
 
-    //   $('body').on('click', '.delete1', function () {
-    // var id = $(this).data("id");
-    // if (confirm("Are you sure you want to delete this record?")) {
-    //     $.ajax({
-    //         type: "DELETE",
-    //         url: "{{ route('dashboard.students.destroy', ['student' => ':id']) }}".replace(':id', id),
-    //         data: {
-    //         _token: '{{ csrf_token() }}'
-    //         },
-    //         success: function (data) {
-    //                     var n = new Noty({
-    //                         type: 'success',
-    //                         text: 'Student deleted successfully!',
-    //                         layout: 'center',
-    //                         timeout: 2000,
-    //                         aria: {
-    //                             live: 'polite'
-    //                         }
-    //                     });
-    //                     n.show();
-    //                     table.draw();
-    //                 },
-    //                 error: function (data) {
-    //                     console.log('Error:', data);
-    //                 }
 
-    //     });
-    // }
-    // });
 
-               $('#confirm-delete').on('shown.bs.modal', function() {
-                $(this).find('#confirm').on('click', function() {
-                    var id = $('.delete-item').attr('data-id');
-
-                    $.ajax({
-                        url: "{{ route('dashboard.students.destroy', ['student' => ':id']) }}".replace(':id', id),
-                        type: 'DELETE',
-                        dataType: 'json',
-                        data: {
-                            '_token': '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            // Refresh the datatable after delete
-                            $('.yajra-datatable').DataTable().ajax.reload();
-                            // Hide the confirmation pop-up
-                            $('#confirm-delete').modal('hide');
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(xhr.responseText);
-                        }
-                    });
-                });
-            });
 
     });
 
